@@ -1,0 +1,43 @@
+Resterait à faire : 
+Commentaire //AAA en API BD
+
+
+
+
+
+On saqit jhamais : 
+// 1. Envoi d'une requete pour selectionner l'élement suivant (ARTSUIVANT#)
+  //  qui contient char* num article en cours
+
+
+    char maRequetePrecedent[1498];
+    strcpy (maRequetePrecedent, "ARTPRECEDENT#");
+    char art[5]; // Ca fera nein plus
+    sprintf(art, "%d", articleEnCours);
+    strcat(maRequetePrecedent, art);
+    //envoi requete
+    Send(sClient, maRequetePrecedent, strlen(maRequetePrecedent));
+    maRequetePrecedent[0] = '\0';
+
+
+    //ATTEND REPONSE
+    Receive(sClient, maRequetePrecedent);
+    bool retour;
+    char resultat[1498];
+    retour = OVESP(maRequetePrecedent, resultat, sClient);
+    if (retour == false)
+    {
+      dialogueErreur("bout de liste", "Vous êtes au bout du rouleau essayez l'autre fleche.");
+    }
+    else
+    {
+      char* nom = strtok(reponse,"#");
+      char* qutxt = strtok(NULL,"#");
+      int qu = atoi(qutxt);
+      char* pxtxt = strtok(NULL,"#");
+      float prix = atof(pxtxt);
+      char* img = strtok(NULL,"#");
+      setArticle(nom, qu, prix, img);
+      articleEnCours--;
+    }
+    

@@ -1,0 +1,10 @@
+Pour garder le client identifié dans chaque pool, il faudra une variable int qui
+contient l'id du client.
+
+Le serveur va contenir un vecteur d'articles et les QU pour le panier
+
+//Serveur : 
+If reponse LOGIN2 = Faire ligne 1
+
+If réponse achat = Faire ligne 4
+
